@@ -1,0 +1,49 @@
+TaschenrechnerGUI
+ ├─ display (Entry)
+ ├─ button_frame (Frame)
+ ├─ buttons
+ │   ├─ Zahlen & Operatoren
+ │   └─ Funktionen / Special Buttons
+ ├─ parser: RechenParser
+ │   ├─ berechne()
+ │   └─ erlaubt Zeichen, Funktionen, Konstanten
+ └─ verlauf: VerlaufManager
+     ├─ speichern()
+     ├─ anzeigen() -> großes scrollbares Fenster
+     └─ loeschen()
+
+
+TaschenrechnerGUI
+ ├─ display (Entry für Eingabe/Ergebnis)
+ ├─ display_var (StringVar für Textbindung)
+ ├─ button_frame (Frame für Buttons)
+ ├─ buttons (Liste von Button-Labels)
+ ├─ parser: RechenParser
+ │   └─ berechne(eingabe) → wertet Ausdruck aus
+ ├─ verlauf: VerlaufManager
+ │   ├─ speichern(eingabe, ergebnis)
+ │   ├─ anzeigen(master) → scrollbares Fenster
+ │   └─ loeschen()
+ ├─ Methoden GUI:
+ │   ├─ update_display(wert)
+ │   ├─ clear_entry()
+ │   ├─ delete_last()
+ │   ├─ calculate()
+ │   ├─ toggle_dark()
+ │   ├─ shortcut_overlay()
+ │   └─ tastatur(event)
+ └─ starten() → root.mainloop()
+
+RechenParser
+ ├─ erlaubte_zeichen (String)
+ └─ berechne(eingabe)
+     ├─ überprüft Zeichen
+     ├─ ersetzt ^, √, %, π, e
+     ├─ ersetzt Funktionen (sin, cos, log, ln, exp, arcsin, arccos, arctan)
+     └─ eval() → Ergebnis oder Fehler
+
+VerlaufManager
+ ├─ eintraege (Liste)
+ ├─ speichern(eingabe, ergebnis)
+ ├─ anzeigen(master) → scrollbares Text-Fenster
+ └─ loeschen()
