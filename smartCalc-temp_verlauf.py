@@ -208,6 +208,9 @@ class TaschenrechnerGUI:
                     command=cmd
                 )
                 btn.grid(row=r, column=c, padx=3, pady=3)
+                
+                # Hover-Effekt binden
+                self._hover_binden(btn, self.farben.get(text, "#e0e0e0"))
     
     def _befehl_fuer_button(self, text):
         """Ordnet spezielle Funktionen den Buttons zu"""
@@ -222,6 +225,34 @@ class TaschenrechnerGUI:
         }
         # Standard: Button tippt Text ins Display
         return befehle.get(text, lambda: self.update_display(text))
+
+    def _hover_binden(self, button, original_bg):
+        """Fügt Hover-Effekte (Farbenwechsel) hinzu"""
+        def on_enter(e):
+            # Etwas helleres Grau oder eine modifizierte Farbe bei Hover
+            button.config(cursor="hand2")
+            if self.dark_mode:
+                button.config(bg="#777")
+            else:
+                button.config(bg="#ccc" if original_bg == "#e0e0e0" else self._farbe_aufhellen(original_bg))
+        
+        def on_leave(e):
+            # Zurück zur Originalfarbe (beachtet Dark Mode)
+            button.config(cursor="")
+            bg = original_bg if not self.dark_mode else "#555"
+            button.config(bg=bg)
+            
+        button.bind("<Enter>", on_enter)
+        button.bind("<Leave>", on_leave)
+
+    def _farbe_aufhellen(self, hex_farbe):
+        """Einfache Logik zum Aufhellen von Hex-Farben für den Hover-Effekt"""
+        try:
+            # Nur für bekannte Farben in self.farben relevant
+            # Wir geben hier einfach eine leicht abweichende Farbe zurück oder nutzen Standard-Hover
+            return "#dcdcdc"
+        except:
+            return hex_farbe
     
     # ----------------------------
     # Tastatur-Events
