@@ -25,15 +25,15 @@ class RechenParser:
           - float/int, falls korrekt
           - Fehlermeldung als String bei Fehlern
         """
-        # 1️⃣ Ungültige Zeichen prüfen
+        # 1 Ungültige Zeichen prüfen
         if any(c not in RechenParser.erlaubte_zeichen for c in eingabe.lower()):
             return "Ungültige Zeichen"
         
         try:
-            # 2️⃣ Potenzen: ^ → **
+            # 2 Potenzen: ^ → **
             eingabe = eingabe.replace("^", "**")
             
-            # 3️⃣ Wurzel √ behandeln: √9 → math.sqrt(9)
+            # 3 Wurzel √ behandeln: √9 → math.sqrt(9)
             while "√" in eingabe:
                 pos = eingabe.find("√")
                 zahl = ""
@@ -45,13 +45,13 @@ class RechenParser:
                     return "Fehler bei √"
                 eingabe = eingabe[:pos] + f"math.sqrt({zahl})" + eingabe[pos+1+len(zahl):]
             
-            # 4️⃣ Prozent behandeln: 50% → 50/100
+            # 4 Prozent behandeln: 50% → 50/100
             eingabe = re.sub(r"(\d+(\.\d+)?)%", r"(\1/100)*", eingabe)
             
-            # 5️⃣ Konstanten ersetzen: π → math.pi, e → math.e
+            # 5 Konstanten ersetzen: π → math.pi, e → math.e
             eingabe = eingabe.replace("π", "math.pi").replace("e", "math.e")
             
-            # 6️⃣ Funktionen: sin, cos, tan, log, ln, exp, arcsin, arccos, arctan
+            # 6 Funktionen: sin, cos, tan, log, ln, exp, arcsin, arccos, arctan
             funktionen = {
                 r"sin\(([^)]+)\)": r"math.sin(math.radians(\1))",
                 r"cos\(([^)]+)\)": r"math.cos(math.radians(\1))",
@@ -67,13 +67,13 @@ class RechenParser:
             for pattern, ersatz in funktionen.items():
                 eingabe = re.sub(pattern, ersatz, eingabe)
             
-            # 7️⃣ Ausdruck auswerten
+            # 7 Ausdruck auswerten
             ergebnis = eval(eingabe)
             
-            # 8️⃣ Ergebnis runden, falls Float
+            # 8 Ergebnis runden, falls Float
             return round(ergebnis, 4) if isinstance(ergebnis, float) else ergebnis
         
-        # 9️⃣ Fehlerbehandlung
+        # 9 Fehlerbehandlung
         except ZeroDivisionError:
             return "Division durch 0"
         except Exception:
@@ -138,20 +138,20 @@ class TaschenrechnerGUI:
     """GUI für wissenschaftlichen Taschenrechner"""
     
     def __init__(self):
-        # 1️⃣ Hauptfenster
+        # 1 Hauptfenster
         self.root = tk.Tk()
         self.root.title("Taschenrechner Wissenschaft (Online)")
         self.root.resizable(True, True)
         
-        # 2️⃣ Parser und Verlaufmanager initialisieren
+        # 2️ Parser und Verlaufmanager initialisieren
         self.parser = RechenParser()
         self.verlauf = VerlaufManager()
         self.dark_mode = False  # Standard hell
         
-        # 3️⃣ Display-Variable für Entry
+        # 3️ Display-Variable für Entry
         self.display_var = tk.StringVar()
         
-        # 4️⃣ GUI aufbauen
+        # 4️ GUI aufbauen
         self._gui_bauen()
         self._events_binden()
     

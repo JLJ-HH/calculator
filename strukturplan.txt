@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 =========================================
 STRUKTURPLAN: SmartCalc (Python/Tkinter)
 =========================================
@@ -34,3 +35,22 @@ MODULE 2: VerlaufManager (Data Management)
      └─ Text-Widget + Scrollbar (UI-Kapselung)
 
 =========================================
+=======
+SmartCalc (Projektstruktur)
+
+📂 calculator
+├── 📁 static
+│   ├── 📁 css
+│   │   └── style.css           (Kern-Styling, Dark/Light Mode, Glassmorphism)
+│   └── 📁 js
+│       └── script.js            (Frontend-Logik, API-Calls, Event-Listener)
+│
+├── 📁 templates
+│   └── index.html              (HTML5 Struktur, Rechner-Layout)
+│
+├── app.py                      (Flask-Server, Rechen-Parser, Historie-Logik)
+├── requirements.txt            (Projekt-Abhängigkeiten: Flask)
+├── README.md                   (Projektdokumentation)
+├── strukturplan.txt            (Strukturübersicht)
+└── smartCalc-temp_verlauf.py   (Legacy: Ursprüngliche Desktop-Version)
+>>>>>>> 4171d3fe860e8433487ea60694d34e1e6aa14823
