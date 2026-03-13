@@ -39,3 +39,9 @@ Ein wissenschaftlicher Web-Taschenrechner, der auf Flask basiert. Dieses Projekt
 
 ## Sicherheitshinweis
 Die Anwendung nutzt `eval()` zur Auswertung mathematischer Ausdrücke. Um Sicherheitsrisiken zu minimieren, werden alle Eingaben gegen eine strikte Whitelist erlaubter Zeichen geprüft und in einem isolierten Kontext ohne Zugriff auf Systemfunktionen ausgeführt.
+
+## Autor
+
+**José Luis Juárez** - Angehender Anwendungsentwickler aus Hamburg.
+
+[Strato Portfolio](https://jljuarez.de/taschenrechner/)
